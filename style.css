@@ -7,8 +7,61 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #FF0000 !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #FF0000;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Navbar responsiva */
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.5rem 0;
+        text-align: center;
+    }
 }
 
 /* Espaçamento padrão para todas as seções */
@@ -375,57 +428,33 @@ section.bg-light {
     border-radius: 8px;
 }
 
-/* Galeria - Nova Estilização */
-#galeria {
+/* Galeria aprimorada */
+.gallery-section {
     padding: 80px 0;
-    background-color: #f8f9fa;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
 }
 
-#galeria .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
 }
 
-#galeria .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 30px;
-    margin: 0;
-}
-
-#galeria .col-md-4 {
-    flex: 0 0 calc(33.333% - 20px);
-    max-width: calc(33.333% - 20px);
-}
-
-.gallery-card {
-    height: 100%;
+.gallery-item {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    background: white;
+    transition: all 0.4s ease;
+    aspect-ratio: 3/2;
 }
 
-.gallery-image {
-    position: relative;
-    width: 100%;
-    padding-top: 75%; /* Proporção 4:3 */
-    overflow: hidden;
-}
-
-.gallery-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s ease;
 }
 
 .gallery-overlay {
@@ -434,31 +463,47 @@ section.bg-light {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.gallery-content {
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     padding: 20px;
-    text-align: center;
-    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
 }
 
-.gallery-content h5 {
-    color: #333333;
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-title {
+    color: white;
+    font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 5px;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
 }
 
-.gallery-content p {
-    color: #666666;
-    margin-bottom: 15px;
-    line-height: 1.5;
+.gallery-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-title,
+.gallery-item:hover .gallery-description {
+    transform: translateY(0);
 }
 
 /* Efeitos de Hover */
@@ -526,24 +571,47 @@ section.bg-light {
     }
 }
 
-/* Modal da Galeria */
-#imageModal .modal-content {
+/* Modal da galeria aprimorado */
+.gallery-modal .modal-content {
     background: transparent;
     border: none;
-    max-width: 90vw;
-    margin: 0 auto;
 }
 
-#imageModal .modal-body {
+.gallery-modal .modal-body {
     padding: 0;
     border-radius: 15px;
     overflow: hidden;
+    background: black;
 }
 
-#imageModal .modal-body img {
+.gallery-modal img {
     width: 100%;
     height: auto;
-    border-radius: 15px;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-thumbnail {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.gallery-thumbnail.active {
+    opacity: 1;
+    border: 2px solid #FF0000;
 }
 
 /* Seção de Serviços para Motos */
@@ -818,24 +886,47 @@ section.bg-light {
     }
 }
 
-/* Modal da Galeria */
-#imageModal .modal-content {
+/* Modal da galeria aprimorado */
+.gallery-modal .modal-content {
     background: transparent;
     border: none;
-    max-width: 90vw;
-    margin: 0 auto;
 }
 
-#imageModal .modal-body {
+.gallery-modal .modal-body {
     padding: 0;
     border-radius: 15px;
     overflow: hidden;
+    background: black;
 }
 
-#imageModal .modal-body img {
+.gallery-modal img {
     width: 100%;
     height: auto;
-    border-radius: 15px;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-thumbnail {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.gallery-thumbnail.active {
+    opacity: 1;
+    border: 2px solid #FF0000;
 }
 
 /* Seção de Serviços para Motos */

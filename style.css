@@ -669,7 +669,7 @@ section.bg-light {
     position: relative;
     height: 100vh;
     min-height: 600px;
-    background: url('./img/background.jpg') no-repeat center center;
+    background: url('./Img/background.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;

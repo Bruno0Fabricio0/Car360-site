@@ -597,21 +597,46 @@ section.bg-light {
     padding: 15px;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #FF0000 rgba(0, 0, 0, 0.2);
+}
+
+.gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+    background-color: #FF0000;
+    border-radius: 3px;
 }
 
 .gallery-thumbnail {
-    width: 70px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     object-fit: cover;
     border-radius: 5px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.gallery-thumbnail:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
 .gallery-thumbnail.active {
     opacity: 1;
-    border: 2px solid #FF0000;
+    border-color: #FF0000;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 /* Seção de Serviços para Motos */
@@ -912,21 +937,46 @@ section.bg-light {
     padding: 15px;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #FF0000 rgba(0, 0, 0, 0.2);
+}
+
+.gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+    background-color: #FF0000;
+    border-radius: 3px;
 }
 
 .gallery-thumbnail {
-    width: 70px;
-    height: 50px;
+    width: 80px;
+    height: 60px;
     object-fit: cover;
     border-radius: 5px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.gallery-thumbnail:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
 .gallery-thumbnail.active {
     opacity: 1;
-    border: 2px solid #FF0000;
+    border-color: #FF0000;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 /* Seção de Serviços para Motos */

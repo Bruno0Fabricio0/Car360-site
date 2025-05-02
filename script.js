@@ -306,13 +306,11 @@ let indiceAtual = 0;
 
 // Função para inicializar a galeria
 function inicializarGaleria() {
-    // Coleta todas as imagens da galeria
     galeriaImagens = Array.from(document.querySelectorAll('.gallery-image img')).map(img => ({
         src: img.src,
         alt: img.alt
     }));
 
-    // Adiciona miniaturas ao modal
     const thumbnailsContainer = document.querySelector('.gallery-thumbnails');
     thumbnailsContainer.innerHTML = '';
     
@@ -320,13 +318,17 @@ function inicializarGaleria() {
         const thumb = document.createElement('img');
         thumb.src = img.src;
         thumb.alt = img.alt;
-        thumb.className = 'gallery-thumbnail';
+        thumb.className = `gallery-thumbnail ${index === 0 ? 'active' : ''}`;
+        thumb.style.width = '80px';
+        thumb.style.height = '60px';
+        thumb.style.objectFit = 'cover';
+        thumb.style.margin = '0 5px';
+        thumb.style.cursor = 'pointer';
         thumb.onclick = () => abrirImagem(index);
         thumbnailsContainer.appendChild(thumb);
     });
 }
 
-// Função para abrir imagem específica
 function abrirImagem(index) {
     indiceAtual = index;
     const modalImage = document.getElementById('modalImage');
@@ -336,9 +338,20 @@ function abrirImagem(index) {
     modalImage.alt = galeriaImagens[index].alt;
     modalTitle.textContent = galeriaImagens[index].alt;
     
-    // Atualiza miniaturas ativas
+    atualizarMiniaturas(index);
+}
+
+function atualizarMiniaturas(indiceAtivo) {
     document.querySelectorAll('.gallery-thumbnail').forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === index);
+        if (i === indiceAtivo) {
+            thumb.classList.add('active');
+            thumb.style.opacity = '1';
+            thumb.style.transform = 'scale(1.1)';
+        } else {
+            thumb.classList.remove('active');
+            thumb.style.opacity = '0.6';
+            thumb.style.transform = 'scale(1)';
+        }
     });
 }
 
